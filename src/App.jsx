@@ -50,7 +50,7 @@ export default function App(){
   }
 
   function DelLocalStorage( coin ){
-    const updated = [...userCoins].filter(item => item !== coin);
+    const updated = userCoins.filter(item => item !== coin);
     setUserCoins(updated);
   }
 

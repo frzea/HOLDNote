@@ -1,9 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PNL } from "./PNL"
 import { TaskSeduler } from "./task-scheduler";
 
 export function CoinTools({coinId, lastPrice}){
     const [userCoinsToolsData, setUserCoinsToolsData] = useState(JSON.parse(localStorage.getItem('userCoinTools')) || {});
+
+    useEffect(()=>{
+        // Добавляем в LS результат
+        localStorage.setItem('userCoinTools', JSON.stringify(userCoinsToolsData));
+    },[userCoinsToolsData]);
 
     
     function updateCoinTools(updater){
@@ -15,8 +20,6 @@ export function CoinTools({coinId, lastPrice}){
         const result = {...userCoinsToolsData, [coinId] :  newCoinData}
         // Обновляем состояние монетки
         setUserCoinsToolsData(result);
-        // Добавляем в LS результат
-        localStorage.setItem('userCoinTools', JSON.stringify(result));
     }
 
     return(

@@ -9,29 +9,36 @@ export function TaskSeduler({coinId, userPlanCommits, updateCoinTools}){
        setNewCommit( {...newCommit, id : crypto.randomUUID(), text: comitText, date: new Date().toISOString()} )
     }
 
+    function handleAddCommit(){
+        updateCoinTools((coinData)=>({
+            ...coinData, 
+            todos : [...coinData.todos, newCommit]
+        }))
+        setNewCommit({ id: '' , text : '', done : false, date : ''})
+    }
+
+    function handleEditCommit(id, commit){
+        updateCoinTools((coinData)=>({
+            ...coinData, 
+            todos : coinData.todos.map(dataid =>
+                    (dataid.id === id) ? {...dataid, text: commit, date: new Date().toISOString()} : dataid
+            )
+        }));
+        setIsEdit('');    
+    }
+
     return(
         <>
         PLAN 
         <input type="text" value={newCommit.text} onChange={e => saveCommit(e.target.value)}/> 
-        <button onClick={()=>{
-                updateCoinTools((coinData)=>({...coinData, todos : [...coinData.todos, newCommit]}))
-                setNewCommit({ id: '' , text : '', done : false, date : ''})
-            }
-        }>Add</button>
+        <button onClick={()=> {handleAddCommit()}}>Add</button>
         <hr/>
         {userPlanCommits?.[coinId]?.todos?.map(item =>
-            ((isEdit == item.id) ? 
+            ((isEdit === item.id) ? 
             <div>
                 <input type="text" value={editCommit} onChange={e=> setEditCommit(e.target.value)}/>
-                <button onClick={()=>{
-                     updateCoinTools((coinData)=>({...coinData, todos : coinData.todos.map(dataid =>{
-                       return (dataid.id == item.id) ? {...dataid, text:editCommit, date: new Date().toISOString()} : dataid
-                     }
-                     )}));
-                    setIsEdit('')
-                    }
-                }>save</button>
-                <button onClick={()=>setIsEdit('')}>esc</button> 
+                <button onClick={()=> {handleEditCommit(item.id, editCommit)}}>save</button>
+                <button onClick={()=> setIsEdit('')}>esc</button> 
             </div>
             :
             <li key={item.id}>
@@ -47,7 +54,3 @@ export function TaskSeduler({coinId, userPlanCommits, updateCoinTools}){
 }
 
 
-/*
-    console.log(isEdit);
-    console.log(userPlanCommits);
-*/
