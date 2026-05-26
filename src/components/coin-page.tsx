@@ -14,20 +14,29 @@ export function CoinPage(){
     const coinData = [...storeData.topCoins, ...storeData.userCoins];
     const coin: Coin = coinData.find(c => c.id === coinId);
     const coinSymbol = coin?.symbol?.toUpperCase();
-    const symbol = coinSymbol?.endsWith('USDT') ? coinSymbol : `${coinSymbol}USDT`;
-    
+
     useEffect(()=>{
+      let cancelRequest = false;
         async function getData() {
             try{
-                const  graf: BinanceData = await getCoins(`https://api.binance.com/api/v3/klines?symbol=${symbol}&interval=1h&limit=168`);
+              const symbol = coinSymbol?.endsWith('USDT') ? coinSymbol : `${coinSymbol}USDT`;
+              const  graf: BinanceData = await getCoins(`https://api.binance.com/api/v3/klines?symbol=${symbol}&interval=1h&limit=168`);
+              if(!cancelRequest){
                 setGrafData(graf);
+              }
             } catch(err) {
+              if(!cancelRequest){
                 setGrafData([]);
+              }  
             }
         }
 
         getData();
-    },[coinId])
+
+        return () =>{
+          cancelRequest = true;
+        }
+    },[coinSymbol])
 
   return(
     <>

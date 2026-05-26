@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Position, PNLProps } from "./types";
 
-export function PNL({ coinId, lastPrice, userCoinsToolsData, updateCoinTools} : PNLProps){
+export function PNL({ CoinToolsData, lastPrice, updateCoinTools} : PNLProps){
    const [addPNL, setAddPNL] = useState<boolean>(false);
    const [newPosition, setNewPosition] = useState<Position>({id: '',  qty : 0, price : 0, date : ''})
 
@@ -24,7 +24,7 @@ export function PNL({ coinId, lastPrice, userCoinsToolsData, updateCoinTools} : 
       ))   
    }
 
-   const positions = userCoinsToolsData?.[coinId]?.positions ?? [];
+   const positions = CoinToolsData.positions ?? [];
    const totalInvested = positions.reduce((sum, p) => sum + p.qty * p.price, 0);
    const currentValue = positions.reduce((sum, p) => sum + p.qty * lastPrice, 0);
    const pnl = currentValue - totalInvested;
@@ -43,7 +43,7 @@ export function PNL({ coinId, lastPrice, userCoinsToolsData, updateCoinTools} : 
             </div>
          }
          <hr/>
-         {userCoinsToolsData?.[coinId]?.positions?.map((pos, i) =>
+         {CoinToolsData.positions?.map((pos, i) =>
             <li key={i}>
                {`${i+1}. Дата: ${pos.date} Кол: ${pos.qty} Цена: ${pos.price}   `} 
                <button onClick={()=>{handleRemovePosition(pos.id)}}>-</button>

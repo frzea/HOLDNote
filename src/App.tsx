@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
-import { CoinList } from './components/coin-list.js'
+import { CoinList } from './components/coin-list.tsx'
 import { Search } from './components/search.tsx'
-import { getCoins } from './services/get-coins.js'
-import { useLocalStorage } from './custom-hooks/useLocalStorage.js' 
+import { getCoins } from './services/get-coins.tsx'
+import { useLocalStorage } from './custom-hooks/useLocalStorage.tsx' 
 import { Coin, CoinData } from './components/types.tsx'
 import './index.css'
 

@@ -13,4 +13,4 @@ export function CoinList({ data = [], form, addCoin, removeCoin }: CoinListProps
       ))}
     </>
   )
-}
+}  

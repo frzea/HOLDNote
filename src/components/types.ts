@@ -21,15 +21,13 @@ export interface ToolsData{
 export type UserCoinsToolsData = Record<string, ToolsData>
 
 export interface PNLProps{
-    coinId : string
     lastPrice: number
-    userCoinsToolsData: Record<string, ToolsData>
+    CoinToolsData: ToolsData
     updateCoinTools: (updater:(toolsData: ToolsData) => ToolsData) => void
 }
 
 export interface TodoProps{
-    coinId : string
-    userCoinsToolsData: Record<string, ToolsData>
+    CoinToolsData: ToolsData
     updateCoinTools: (updater:(toolsData: ToolsData) => ToolsData) => void
 }
 
