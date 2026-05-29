@@ -1,7 +1,8 @@
-import { PNL } from "./pnl/index.js"
-import { TaskScheduler } from "./task-scheduler";
-import { useLocalStorage } from "../custom-hooks/useLocalStorage.js";
-import { ToolsData, UserCoinsToolsData, CoinToolsProps,UpdaterCoinData, } from "./types";
+import { PNL } from "./pnl/index"
+import { TaskScheduler } from "./todo/index";
+import { useLocalStorage } from "../../custom-hooks/useLocalStorage";
+import {  CoinToolsProps, UpdaterCoinData, } from '../types';
+import { ToolsData, UserCoinsToolsData  } from './types';
 import { useCallback, useMemo } from "react";
 
 export function CoinTools({coinId, lastPrice}: CoinToolsProps){

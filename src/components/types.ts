@@ -24,12 +24,12 @@ export interface PNLProps{
     lastPrice: number
     CoinToolsData: ToolsData
     updateCoinTools: (updater:(toolsData: ToolsData) => ToolsData) => void
-}*/
+}
 
 export interface TodoProps{
     CoinToolsData: ToolsData
     updateCoinTools: (updater:(toolsData: ToolsData) => ToolsData) => void
-}
+}*/
 
 export interface CoinToolsProps{
     coinId: string

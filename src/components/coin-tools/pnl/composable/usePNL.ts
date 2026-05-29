@@ -1,5 +1,6 @@
 import { useCallback, useState } from "react"
-import { Position, PNLProps } from '../types/type.ts'
+import { PNLProps } from '../type.ts'
+import { Position } from '../../types.ts'
 
 
 const EMPTY_POSITION: Position = {id: '',  qty : null, price : null, date : ''}

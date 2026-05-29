@@ -17,10 +17,7 @@ interface ToolsData{
     todos: Todo[]
 }
 
-interface PNLProps{
-    lastPrice: number
-    CoinToolsData: ToolsData
-    updateCoinTools: (updater:(toolsData: ToolsData) => ToolsData) => void
-}
+type UserCoinsToolsData = Record<string, ToolsData>
 
-export type {Position, Todo, ToolsData, PNLProps}
+
+export type {Position, Todo, ToolsData, UserCoinsToolsData}
