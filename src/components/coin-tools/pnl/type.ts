@@ -1,9 +1,9 @@
-import { ToolsData } from '../types.ts'
+import { ToolsData, UpdateCoinTools } from '../types.ts'
 
 interface PNLProps{
     lastPrice: number
     CoinToolsData: ToolsData
-    updateCoinTools: (updater:(toolsData: ToolsData) => ToolsData) => void
+    updateCoinTools: UpdateCoinTools
 }
 
 export type { PNLProps }

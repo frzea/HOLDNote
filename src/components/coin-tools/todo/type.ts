@@ -1,10 +1,14 @@
-import { ToolsData } from '../types'
+import { ToolsData,UpdateCoinTools } from '../types'
 
-type UpdateCoinTools = (updater: (toolsData: ToolsData) => ToolsData) => void
+type EditState = {
+    id: string
+    text: string
+}
+
 
 interface TodoProps{
     CoinToolsData: ToolsData
     updateCoinTools: UpdateCoinTools
 }
 
-export type { TodoProps, UpdateCoinTools }
+export type { TodoProps, EditState }

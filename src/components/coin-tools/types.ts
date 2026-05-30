@@ -17,7 +17,15 @@ interface ToolsData{
     todos: Todo[]
 }
 
+type UpdateCoinTools = (updater: (toolsData: ToolsData) => ToolsData) => void
+
 type UserCoinsToolsData = Record<string, ToolsData>
 
+type UpdaterCoinData = (toolsData : ToolsData) => ToolsData
 
-export type {Position, Todo, ToolsData, UserCoinsToolsData}
+interface CoinToolsProps{
+    coinId: string
+    lastPrice: number
+}
+
+export type {Position, Todo, ToolsData, UpdateCoinTools, UserCoinsToolsData, UpdaterCoinData, CoinToolsProps}

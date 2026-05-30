@@ -1,37 +1,37 @@
 import { TodoProps } from "./type";
-import { useTaskScheduler } from './useTaskScheduler'
+import { useTaskScheduler } from './composable/useTaskScheduler';
+import { useEditState } from './composable/useEditState';
+import { EditTodoItem } from './components/editTodoItem/index';
+import { TodoItem } from './components/todoItem/index';
+import { AddTodoItem } from './components/addTodoItem/index'; 
 
 export function TaskScheduler({CoinToolsData, updateCoinTools}: TodoProps){
-   const { 
-      isEdit, 
-      editCommit, 
-      newCommit, 
-      setIsEdit, 
-      setEditCommit, 
-      updateValCommit, 
-      handleAddCommit, 
-      handleEditCommit
-   } = useTaskScheduler(updateCoinTools);
+   const { editState, updateText, startEdit, stopEdit, isEditing } = useEditState();
+   const { newCommit, updateCommit, handleAddCommit, handleEditCommit} = useTaskScheduler(updateCoinTools);
 
    return(
       <>
-         PLAN 
-         <input type="text" value={newCommit.text} onChange={e => updateValCommit(e.target.value)}/> 
-         <button onClick={()=> {handleAddCommit()}}>Add</button>
+         <AddTodoItem 
+            newCommit={newCommit} 
+            updateCommit={updateCommit} 
+            handleAddCommit={handleAddCommit}
+         />
          <hr/>
          {CoinToolsData.todos?.map(item =>
-               (isEdit === item.id) ? 
-               <div>
-                  <input type="text" value={editCommit} onChange={e=> setEditCommit(e.target.value)}/>
-                  <button onClick={()=> {handleEditCommit(item.id, editCommit)}}>save</button>
-                  <button onClick={()=> setIsEdit('')}>esc</button> 
-               </div>
-               :
-               <li key={item.id}>
-                  {`${item.text}  Дата: ${new Date(item.date).toLocaleString()}`}
-                  <button onClick={()=>{setIsEdit(item.id); setEditCommit(item.text)}}>edit</button>
-                  <button>X</button> 
-               </li>      
+            isEditing(item.id) 
+            ? <EditTodoItem 
+                  key={item.id} 
+                  item={item} 
+                  editState={editState} 
+                  updateText={updateText}
+                  stopEdit={stopEdit}
+                  handleEditCommit={handleEditCommit}
+            />
+            : <TodoItem 
+                  key={item.id}
+                  item={item}
+                  startEdit={startEdit} 
+            /> 
          )}
       </>
    )

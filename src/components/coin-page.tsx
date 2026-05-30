@@ -2,7 +2,7 @@ import { useState,useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getCoins } from "../services/get-coins.js";
 import { Graf } from "./graf.js";
-import { CoinTools } from "./coin-tools.tsx";
+import { CoinTools } from './coin-tools/coin-tools.tsx';
 import { CoinHeader } from "./coin-header.js";
 import { Coin, CoinData,BinanceData } from "./types.ts";
 

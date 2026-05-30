@@ -1,15 +1,13 @@
 import { useState } from 'react';
-import { Todo } from '../types';
-import { UpdateCoinTools } from './type' 
+import { Todo } from '../../types';
+import { UpdateCoinTools } from '../../types' 
 
 const EMPTY_TODO: Todo = { id: '' , text : '', done : false, date : ''};
 
 export function useTaskScheduler(updateCoinTools: UpdateCoinTools){
-   const [isEdit, setIsEdit] = useState<string>('');
-   const [editCommit, setEditCommit] = useState<string>('');
    const [newCommit, setNewCommit] = useState<Todo>(EMPTY_TODO)
 
-   function updateValCommit(comitText: string){
+   function updateCommit(comitText: string){
       setNewCommit({
          ...newCommit, 
          id : crypto.randomUUID(), 
@@ -36,17 +34,12 @@ export function useTaskScheduler(updateCoinTools: UpdateCoinTools){
             : 
             dataid
          )
-      }));
-      setIsEdit('');    
+      }));  
    }
 
    return { 
-      isEdit,
-      editCommit,
       newCommit,
-      setIsEdit, 
-      setEditCommit,
-      updateValCommit,
+      updateCommit,
       handleAddCommit,
       handleEditCommit
    }

@@ -1,4 +1,4 @@
-import { Position } from "../../type";
+import { Position } from '../../../types';
 
 interface PositionListProps{
     pos: Position

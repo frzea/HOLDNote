@@ -30,13 +30,13 @@ export interface TodoProps{
     CoinToolsData: ToolsData
     updateCoinTools: (updater:(toolsData: ToolsData) => ToolsData) => void
 }*/
-
+/*
 export interface CoinToolsProps{
     coinId: string
     lastPrice: number
-}
+}*/
 
-export type UpdaterCoinData = (toolsData : ToolsData) => ToolsData
+//export type UpdaterCoinData = (toolsData : ToolsData) => ToolsData
 
 export interface Coin{
     id: string

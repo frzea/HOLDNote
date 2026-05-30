@@ -1,4 +1,4 @@
-import { Position } from "../../../types/type";
+import { Position } from '../../../types';
 import { Dispatch, SetStateAction } from 'react';
 
 interface AddPositionFormProps{
