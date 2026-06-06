@@ -1,15 +1,16 @@
-
-import { PNLProps } from "./type.ts";
-import { usePNLPosition } from "./composable/usePNLPosition.ts";
+import { useState } from "react"
 import { useToggle } from '../../../../../composable/useToggle.ts'
 import { AddPositionForm } from "./components/add-position-form/index.tsx";
 import { PositionList } from "./components/position-list/index.tsx";
 import { calcPNL } from "./composable/pnlCalculations.ts";
+import { Position } from "../types.ts";
 
-export function PNL({CoinToolsData, updateCoinTools}: PNLProps){
+const EMPTY_POSITION: Position = {id: '',  qty : 0, price : 0, date : ''}
+
+export function PNL(){
    const {toggleValue, toggle} = useToggle(false);
-   const {handleAddPosition, handleRemovePosition, newPosition, setNewPosition } = usePNLPosition(updateCoinTools);
-   const {totalInvested, positions, pnl} = calcPNL(CoinToolsData);
+   const [newPosition, setNewPosition] = useState<Position>(EMPTY_POSITION);  
+   const {totalInvested, positions, pnl} = calcPNL();
 
    return(
       <div id ="PNL">
@@ -19,7 +20,6 @@ export function PNL({CoinToolsData, updateCoinTools}: PNLProps){
             <AddPositionForm 
                newPosition={newPosition}
                setNewPosition={setNewPosition}
-               handleAddPosition={handleAddPosition}
             />}
          <hr/>
          <ul>
@@ -28,7 +28,6 @@ export function PNL({CoinToolsData, updateCoinTools}: PNLProps){
                   key={pos.id} 
                   pos={pos} 
                   index={i} 
-                  onRemove={handleRemovePosition} 
                />
             )}
          </ul>

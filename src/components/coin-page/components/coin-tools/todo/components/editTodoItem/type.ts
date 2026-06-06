@@ -6,6 +6,5 @@ export interface EditTodoItemProps{
     editState: EditState
     updateText: (text: string) => void
     stopEdit: ()=> void
-    handleEditCommit: (id: string, update: Partial<Todo>)=> void
 }
 

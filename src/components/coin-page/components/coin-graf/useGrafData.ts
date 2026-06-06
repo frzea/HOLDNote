@@ -2,13 +2,15 @@ import { useState,useEffect } from "react";
 import { Coin } from '../../../types';
 import { BinanceData } from './type';
 import { getCoins } from '../../../../services/get-coins';
-import { useCoinStore } from '../../../../store/CoinStore'
+import { useCoinStore } from '../../../../store/CoinStore';
+import { useCoinToolsStore } from '../../../../store/CoinToolsStore';
 
 
 
 export function useGrafData(coinId: string){
    const [grafData, setGrafData] = useState<BinanceData>([]);
    const { getCoinById, setSelectedCoin } = useCoinStore();
+   const { setSelectedCoinTodo } = useCoinToolsStore();
 
 
    const coin: Coin = getCoinById(coinId);
@@ -17,6 +19,7 @@ export function useGrafData(coinId: string){
    useEffect(()=>{
 
       setSelectedCoin(coinId);
+      setSelectedCoinTodo(coinId);
 
       let cancelRequest = false;
       async function getData() {

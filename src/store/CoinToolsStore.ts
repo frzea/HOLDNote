@@ -6,8 +6,11 @@ import { persist } from 'zustand/middleware';
 const EMPTY_TOOLS_DATA: ToolsData = { positions: [], todos: [] }
 
 interface CoinToolsStore {
+
+   selectCoinId: string | null
    coinToolsData: Record<string, ToolsData>
    getCoinData: (coinId: string) => ToolsData
+   setSelectedCoinTodo: (id: string) => void
 
    addPosition: (coinId: string, position: Omit<Position, 'id'>) => void
    removePosition: (coinId: string, positionID: string) => void
@@ -21,10 +24,16 @@ interface CoinToolsStore {
 
 export const useCoinToolsStore = create<CoinToolsStore>()(
    persist((set,get) => ({
+
+         selectCoinId: null,
          coinToolsData: {},
 
          getCoinData: (coinId) =>{
             return get().coinToolsData[coinId] ?? EMPTY_TOOLS_DATA
+         },
+
+         setSelectedCoinTodo: (id) => {
+            set({ selectCoinId: id});
          },
 
          addPosition: (coinId, position) => {

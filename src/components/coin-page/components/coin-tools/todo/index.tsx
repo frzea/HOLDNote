@@ -1,20 +1,21 @@
-import { TodoProps } from "./type";
 import { useTaskScheduler } from './composable/useTaskScheduler';
 import { useEditState } from './composable/useEditState';
 import { EditTodoItem } from './components/editTodoItem/index';
 import { TodoItem } from './components/todoItem/index';
 import { AddTodoItem } from './components/addTodoItem/index'; 
+import { useCoinToolsStore } from '../../../../../store/CoinToolsStore';
 
-export function TaskScheduler({CoinToolsData, updateCoinTools}: TodoProps){
+export function TaskScheduler(){
+   const { getCoinData, selectCoinId} = useCoinToolsStore();
    const { editState, updateText, startEdit, stopEdit, isEditing } = useEditState();
-   const { newCommit, updateCommit, handleAddCommit, handleEditCommit, handlRemoveCommit} = useTaskScheduler(updateCoinTools);
+   const { newCommit, updateCommit} = useTaskScheduler();
 
+   const CoinToolsData = getCoinData(selectCoinId);
    return(
       <>
          <AddTodoItem 
             newCommit={newCommit} 
             updateCommit={updateCommit} 
-            handleAddCommit={handleAddCommit}
          />
          <hr/>
          {CoinToolsData.todos?.map(item =>
@@ -25,14 +26,11 @@ export function TaskScheduler({CoinToolsData, updateCoinTools}: TodoProps){
                   editState={editState} 
                   updateText={updateText}
                   stopEdit={stopEdit}
-                  handleEditCommit={handleEditCommit}
             />
             : <TodoItem 
                   key={item.id}
                   item={item}
-                  startEdit={startEdit} 
-                  handlRemoveCommit={handlRemoveCommit}
-                  handleEditCommit={handleEditCommit}
+                  startEdit={startEdit}
             /> 
          )}
       </>

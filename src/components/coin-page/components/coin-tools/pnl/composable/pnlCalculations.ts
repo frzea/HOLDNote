@@ -1,12 +1,13 @@
-import { ToolsData } from '../../types.ts';
 import { useCoinStore } from '../../../../../../store/CoinStore.ts';
+import { useCoinToolsStore } from '../../../../../../store/CoinToolsStore.ts';
 
-export function calcPNL(CoinToolsData: ToolsData) {
-  const lastPrice = useCoinStore(store => store.selectCoin.current_price)
+export function calcPNL() {
+  const {selectCoin, selectCoinId} = useCoinStore();
+  const { getCoinData } = useCoinToolsStore();
 
-  const positions = CoinToolsData.positions ?? [];  
+  const positions = getCoinData(selectCoinId).positions ?? [];  
   const totalInvested = positions.reduce((sum, p) => sum + p.qty * p.price, 0);
-  const currentValue = positions.reduce((sum, p) => sum + p.qty * lastPrice, 0);
+  const currentValue = positions.reduce((sum, p) => sum + p.qty * selectCoin.current_price, 0);
   
   return { totalInvested, positions, pnl: currentValue - totalInvested };
 }

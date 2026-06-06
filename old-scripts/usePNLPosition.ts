@@ -1,0 +1,16 @@
+import { useState } from "react"
+import { Position, UpdateCoinTools } from '../src/components/coin-page/components/coin-tools/types.ts'
+
+
+const EMPTY_POSITION: Position = {id: '',  qty : 0, price : 0, date : ''}
+
+export function usePNLPosition(updateCoinTools : UpdateCoinTools){
+    const [newPosition, setNewPosition] = useState<Position>(EMPTY_POSITION);
+
+  
+  return {
+      newPosition,
+      setNewPosition, 
+    }
+    
+}

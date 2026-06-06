@@ -1,10 +1,8 @@
 import { AddPositionFormProps } from './type.ts';
-import { useCoinStore } from '../../../../../../../store/CoinStore.ts';
 import { useCoinToolsStore } from '../../../../../../../store/CoinToolsStore.ts'
 
-export function AddPositionForm({newPosition,setNewPosition,handleAddPosition}: AddPositionFormProps){
-   const { selectCoinId } = useCoinStore();
-   const { addPosition } = useCoinToolsStore();
+export function AddPositionForm({newPosition,setNewPosition}: AddPositionFormProps){
+   const { addPosition, selectCoinId } = useCoinToolsStore();
    return(
       <>
          Количество: <input type="number" min={0} value={newPosition.qty} onChange={e => setNewPosition({...newPosition, qty : Number(e.target.value)})}/><br/>
