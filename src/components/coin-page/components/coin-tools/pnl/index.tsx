@@ -16,11 +16,27 @@ export function PNL(){
       <div id ="PNL">
          PNL
          <button onClick={toggle}>{ toggleValue ? 'Close' : 'Add'}</button>
-         {toggleValue && 
-            <AddPositionForm 
-               newPosition={newPosition}
-               setNewPosition={setNewPosition}
-            />}
+         {toggleValue && (
+            <div 
+               className="fixed inset-0 bg-black/5 backdrop-blur-sm flex items-center justify-center z-50"
+               onClick={toggle} // клик на фон закрывает
+            >
+               <div 
+                  className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-xl "
+                  onClick={e => e.stopPropagation()} // клик внутри не закрывает
+               >
+                  <div className="flex justify-between">
+                  <h2 className="text-lg font-bold">Добавить позицию</h2>
+                  <button onClick={toggle}>✕</button>
+                  </div>
+
+                  <AddPositionForm 
+                  newPosition={newPosition}
+                  setNewPosition={setNewPosition}
+                  />
+               </div>
+            </div>
+         )}
          <hr/>
          <ul>
             {positions?.map((pos, i) =>
@@ -36,3 +52,15 @@ export function PNL(){
       </div>
    )
 }
+
+
+
+/*
+
+         {toggleValue && 
+            <AddPositionForm 
+               newPosition={newPosition}
+               setNewPosition={setNewPosition}
+            />}
+
+*/
