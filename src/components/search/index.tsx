@@ -8,13 +8,12 @@ export function Search(){
 
    return(
       <>
-         <div className='mt-5 px-5'>
-            <Input className='mb-5' placeholder='Add coin...' onChange={handleChangeSearch} />
-            <InputSpinner  onChange={handleChangeSearch} isLoading={loading}/>
+         <div className='my-3'>
+            <InputSpinner onChange={handleChangeSearch} isLoading={loading}/>
          </div>
-         {loading || <CoinList data={resultSearchList} form={true}/>
+         {
+            loading || <CoinList data={resultSearchList} form={true}/>
          }
-         <hr/>
       </>
    )
 }
