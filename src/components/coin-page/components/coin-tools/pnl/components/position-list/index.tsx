@@ -1,5 +1,6 @@
 import { PositionListProps } from './type';
 import { useCoinToolsStore } from '../../../../../../../store/CoinToolsStore';
+import { Button } from "@/components/ui/button"
 
 
 export function PositionList({pos, index}: PositionListProps){
@@ -8,7 +9,7 @@ export function PositionList({pos, index}: PositionListProps){
    return(
       <li>
          {`${index + 1}. Дата: ${pos.date} Кол: ${pos.qty} Цена: ${pos.price}`} 
-         <button onClick={() => removePosition(selectCoinId, pos.id)}>-</button>
+         <Button onClick={() => removePosition(selectCoinId, pos.id)}>-</Button>
       </li>
    )
 }

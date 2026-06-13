@@ -14,8 +14,8 @@ export default function App(){
 
   return ( 
     <>
-      <div className='bg-white dark:bg-gray-600 text-black dark:text-white'>
-        <div className='px-5'>
+      <div className='bg-white dark:bg-neutral-900 text-black dark:text-white min-h-screen'>
+        <div className='px-3 flex-row items-center'>
           <div className='flex justify-between pt-3'>
             <div>HOLDNote</div>
             <Switch onClick={ChangeMode}/>

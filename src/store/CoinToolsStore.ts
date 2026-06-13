@@ -1,7 +1,7 @@
-import { StackId } from 'recharts/types/util/ChartUtils';
 import { Position,Todo,ToolsData  } from '../components/coin-page/components/coin-tools/types';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import { useCoinStore } from './CoinStore'
 
 const EMPTY_TOOLS_DATA: ToolsData = { positions: [], todos: [] }
 
@@ -53,18 +53,24 @@ export const useCoinToolsStore = create<CoinToolsStore>()(
          },
 
          removePosition: (coinId, positionID) => {
+            let shouldRemoveCoin = false;
+
             set(state => {
                const coinData = state.coinToolsData[coinId] ?? EMPTY_TOOLS_DATA;
+               const newPositions = coinData.positions.filter(p => p.id !== positionID);
+               shouldRemoveCoin = newPositions.length === 0;
                return{
                   coinToolsData: {
                      ...state.coinToolsData,
                      [coinId]: {
                         ...coinData,
-                        positions: coinData.positions.filter(p => p.id !== positionID)
+                        positions: newPositions
                      }
                   }   
                }   
-            })   
+            });
+            
+               if (shouldRemoveCoin) { useCoinStore.getState().removePurchasedCoin(coinId); }
          },
 
          addTodo: (coinId, todo) => {
