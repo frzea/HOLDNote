@@ -5,7 +5,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 
 export function CoinTools(){
    return(
-      <Tabs defaultValue="todos">
+      <Tabs defaultValue="pnl">
          <TabsList className='flex items-center justify-center' variant="line">
             <TabsTrigger value="pnl">Transaction history</TabsTrigger>
             <TabsTrigger value="todos">Notes</TabsTrigger>

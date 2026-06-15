@@ -39,7 +39,7 @@ export function CoinList({ data = [], form }: CoinListProps){
                   <div className="flex flex-col items-end min-w-0">
                       ${coin.current_price}
                     <span className={`text-sm lowercase ${isPositive ? "text-emerald-500" : "text-red-500"}`}>
-                      {coin?.price_change_percentage_24h?.toFixed(1)}{coin?.price_change_percentage_24h?.toFixed(1) && '%'}
+                      {change.toFixed(1)}{change.toFixed(1) && '%'}
                     </span>
                   </div>
                   <Button

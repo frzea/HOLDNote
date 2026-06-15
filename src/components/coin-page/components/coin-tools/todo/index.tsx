@@ -19,7 +19,7 @@ export function TaskScheduler(){
          {toggleValue && (
             <div className="fixed inset-0 bg-black/5 backdrop-blur-sm flex items-center justify-center z-50" onClick={toggle}>
                <div className="bg-white dark:bg-neutral-900  px-5 py-2 shadow-xl border border-white w-2/3" onClick={e => e.stopPropagation()}>
-                  <div className="flex justify-between">
+                  <div className="flex justify-between mb-3">
                      <h2 className="text-lg font-bold">Add todo</h2>
                      <button onClick={toggle}>✕</button>
                   </div>
