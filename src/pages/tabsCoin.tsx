@@ -8,22 +8,20 @@ export function TabsCoins(){
    const {topCoins, userCoins, purchasedCoins} = useCoinStore();
 
    return (  
-      <Tabs defaultValue="overview">
-         <TabsList className='flex items-center justify-center' variant="line">
+      <Tabs defaultValue="overview" className="flex flex-col flex-1 min-h-0 mb-2">
+         <TabsList className='flex items-center justify-center shrink-0' variant="line">
             <TabsTrigger value="tops">Top`s</TabsTrigger>
             <TabsTrigger value="follow">Follow</TabsTrigger>
             <TabsTrigger value="homemade">Homemade</TabsTrigger>
          </TabsList>
-         <TabsContent value="tops">
+         <TabsContent value="tops" className="flex  flex-col flex-1 min-h-0">
             <CoinList data={topCoins} form={true} />
          </TabsContent>
-         <TabsContent value="follow">
+         <TabsContent value="follow" className="flex  flex-col flex-1 min-h-0">
             <CoinList data={userCoins} form={false} />
          </TabsContent>
-         <TabsContent value="homemade">
-            <ScrollArea className="rounded-md border p-4">
-                  <CoinList data={purchasedCoins} form={null} />
-            </ScrollArea>
+         <TabsContent value="homemade" className="flex  flex-col flex-1 min-h-0">
+            <CoinList data={purchasedCoins} form={null} />
          </TabsContent>
       </Tabs>    
    )

@@ -33,7 +33,7 @@ export function TaskScheduler(){
                </div>
             </div>
          )}
-         <ScrollArea className="h-full min-h-0 w-auto rounded-md border pr-3">
+         <ScrollArea className="h-full overflow-hidden w-auto rounded-md pr-2.5">
          <div className="flex flex-col">
             {CoinToolsData.todos?.map(item =>
                isEditing(item.id) 

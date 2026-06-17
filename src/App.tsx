@@ -13,7 +13,7 @@ export default function App(){
   const isCoinPage = location.pathname.includes("/coin/");
 
   return ( 
-    <div className='min-h-screen bg-white dark:bg-neutral-900 text-black dark:text-white'>
+    <div className=' min-h-screen md:h-screen  bg-white dark:bg-neutral-900 text-black dark:text-white'>
 
       {/* Мобильный */}
       <div className="md:hidden">
@@ -28,17 +28,15 @@ export default function App(){
       </div>
 
       {/* Десктоп */}
-      <div className="hidden md:flex">
-        <aside className="w-87.5 border-r min-h-screen">
-            <div className='px-3 flex-row items-center'>
-              <Header/>
-              <Search />
-              <TabsCoins/>
-            </div>
-        </aside>
-        <main className="flex-1">
+      <div className="hidden md:flex h-full">
+        <div className="flex flex-col  w-87.5 border-r h-full px-3">
+          <Header/>
+          <Search />
+          <TabsCoins/>
+        </div>
+        <div className="flex flex-1 w-full">
           <Outlet />
-        </main>
+        </div>
       </div>
     </div>
   )

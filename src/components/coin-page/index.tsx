@@ -14,7 +14,7 @@ export function CoinPage(){
     if (!selectCoin) return null 
 
   return (
-    <div className='flex px-3 flex-col min-h-screen'>
+    <div className='flex flex-1 px-3 flex-col h-full'>
       <div className="md:hidden">
         <Header />
       </div>

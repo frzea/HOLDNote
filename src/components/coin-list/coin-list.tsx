@@ -3,6 +3,7 @@ import { CoinListProps } from './type';
 import { useCoinStore } from '../../store/CoinStore';
 import { Button } from "@/components/ui/button"
 import { HomemadeStat } from "./components/homemade";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 
 export function CoinList({ data = [], form }: CoinListProps){
     const addToUserCoins = useCoinStore(store => store.addToUserCoins);
@@ -10,7 +11,8 @@ export function CoinList({ data = [], form }: CoinListProps){
     const removePurchasedCoin = useCoinStore(store => store.removePurchasedCoin);
 
  return(
-    <div className="flex flex-col gap-1 pb-5">
+    <ScrollArea className="flex-1 h-full min-h-0 w-auto rounded-md pr-2.5">
+    <div className="flex flex-1 flex-col gap-1 pb-5">
       {data.map(coin => {
 
         const change = coin.price_change_percentage_24h ?? 0;
@@ -69,5 +71,6 @@ export function CoinList({ data = [], form }: CoinListProps){
         )
       })}
     </div>
+    </ScrollArea>
   )
 }
