@@ -29,7 +29,7 @@ export default function App(){
 
       {/* Десктоп */}
       <div className="hidden md:flex h-full">
-        <div className="flex flex-col  w-87.5 border-r h-full px-3">
+        <div className="flex flex-col  w-70 border-r h-full px-3 lg:w-87.5">
           <Header/>
           <Search />
           <TabsCoins/>

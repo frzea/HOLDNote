@@ -11,7 +11,7 @@ export function CoinList({ data = [], form }: CoinListProps){
     const removePurchasedCoin = useCoinStore(store => store.removePurchasedCoin);
 
  return(
-    <ScrollArea className="flex-1 h-full min-h-0 w-auto rounded-md pr-2.5">
+    <ScrollArea className="flex-1 h-full min-h-0 w-auto rounded-md md:pr-2.5">
     <div className="flex flex-1 flex-col gap-1 pb-5">
       {data.map(coin => {
 
@@ -21,7 +21,7 @@ export function CoinList({ data = [], form }: CoinListProps){
         return (
         <div
           key={coin.id}
-          className="flex items-center justify-between rounded-md bg-neutral-100  dark:bg-neutral-800 px-3 py-2.5"
+          className="flex items-center justify-between rounded-md bg-neutral-100  dark:bg-neutral-800 px-3 py-2 lg:py-1"
         >
           <div className="flex items-center gap-3 min-w-0">
             <img src={coin.image ?? coin.thumb} alt={coin.id} width={28} height={28} className="rounded-full shrink-0" />
@@ -45,8 +45,9 @@ export function CoinList({ data = [], form }: CoinListProps){
                     </span>
                   </div>
                   <Button
-                    size="icon"
-                    className="rounded-md text-neutral-800 dark:text-neutral-100 border-neutral-800 dark:border-neutral-100 shrink-0 bg-neutral-100 dark:bg-neutral-800"
+                    size="xs"
+                    variant="outline"
+                    //className="rounded-md text-neutral-800 dark:text-neutral-100 border-neutral-800 dark:border-neutral-100 shrink-0 bg-neutral-100 dark:bg-neutral-800"
                     onClick={() => {if(form === true) {addToUserCoins(coin)} if(form === false){ removeUserCoin(coin)} else {removePurchasedCoin(coin.id)}}}
                   >
                     {form === true ? '+' : form === false ? '-' : 'X'}

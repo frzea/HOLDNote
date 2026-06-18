@@ -5,7 +5,8 @@ import { TodoItem } from './components/todoItem/index';
 import { AddTodoItem } from './components/addTodoItem/index'; 
 import { useCoinToolsStore } from '../../../../../store/CoinToolsStore';
 import { useToggle } from '../../../../../composable/useToggle.ts'
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
+import { ScrollArea } from "@/components/ui/scroll-area"
+import { Button } from "@/components/ui/button"
 
 export function TaskScheduler(){
    const {toggleValue, toggle} = useToggle(false);
@@ -33,7 +34,7 @@ export function TaskScheduler(){
                </div>
             </div>
          )}
-         <ScrollArea className="h-full overflow-hidden w-auto rounded-md pr-2.5">
+         <ScrollArea className="h-full overflow-hidden w-auto rounded-md md:pr-2.5">
          <div className="flex flex-col">
             {CoinToolsData.todos?.map(item =>
                isEditing(item.id) 
@@ -52,12 +53,13 @@ export function TaskScheduler(){
             )}
          </div>
          </ScrollArea>
-         <button
+         <Button
             onClick={toggle}
+            variant="outline"
             className="shrink-0 w-full mt-2 py-2 text-sm text-muted-foreground border border-dashed border-border rounded-lg hover:bg-muted transition-colors"
             >
             + Add todo
-         </button>
+         </Button>
       </div>
    )
 }

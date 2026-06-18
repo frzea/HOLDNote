@@ -5,10 +5,18 @@ import {
   Field,
   FieldContent,
   FieldDescription,
-  FieldGroup,
   FieldLabel,
   FieldTitle,
 } from "@/components/ui/field"
+import { MoreHorizontalIcon } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 export function TodoItem({item, startEdit}: TodoItempProps){
    const {selectCoinId}  = useCoinToolsStore();
@@ -22,21 +30,23 @@ export function TodoItem({item, startEdit}: TodoItempProps){
           <Checkbox id="toggle-checkbox-2" name="toggle-checkbox-2" checked={item.done} onCheckedChange={e => updateTodo(selectCoinId, item.id, {done : e})}/>
           <FieldContent>
             <FieldTitle>{item.text}</FieldTitle>
-            <FieldDescription className='text-sm'>
+            <FieldDescription className='text-xs'>
               {new Date(item.date).toLocaleString()}
             </FieldDescription>
           </FieldContent>
-         <button onClick={() => startEdit(item.id, item.text)}>edit</button>
-         <button onClick={() => removeTodo(selectCoinId, item.id)} >X</button> 
+            <DropdownMenu>
+              <DropdownMenuTrigger>
+                <Button variant="outline" size='xs'><MoreHorizontalIcon/></Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuGroup>
+                  <DropdownMenuItem onClick={() => startEdit(item.id, item.text)} >Edit</DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => removeTodo(selectCoinId, item.id)} >Delete</DropdownMenuItem>
+                </DropdownMenuGroup>
+              </DropdownMenuContent>
+            </DropdownMenu>
         </Field>
       </FieldLabel>
       </div>
    )
 }
-
-/*
-         <input type='checkbox' checked={item.done} onChange={e => updateTodo(selectCoinId, item.id, {done : e.target.checked})}/>
-         {`${item.text}  Дата: ${new Date(item.date).toLocaleString()}`}
-         <button onClick={() => startEdit(item.id, item.text)}>edit</button>
-         <button onClick={() => removeTodo(selectCoinId, item.id)} >X</button> 
-*/

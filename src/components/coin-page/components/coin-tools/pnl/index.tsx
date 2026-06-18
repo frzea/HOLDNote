@@ -5,6 +5,7 @@ import { PositionList } from "./components/position-list/index.tsx";
 import { calcPNL } from "./composable/pnlCalculations.ts";
 import { Position } from "../types.ts";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
+import { Button } from "@/components/ui/button"
 
  const today = new Date().toISOString().split('T')[0];
 
@@ -13,7 +14,7 @@ const EMPTY_POSITION: Position = {id: '',  qty : 0, price : 0, date : today}
 export function PNL(){
    const {toggleValue, toggle} = useToggle(false);
    const [newPosition, setNewPosition] = useState<Position>(EMPTY_POSITION);  
-   const {totalInvested, positions, pnl} = calcPNL();
+   const { positions } = calcPNL();
 
    return(
       <div id ="PNL" className="flex flex-col flex-1 min-h-0 mb-3">
@@ -33,19 +34,20 @@ export function PNL(){
                </div>
             </div>
          )}
-         <ScrollArea className="h-full min-h-0 w-auto rounded-md border pr-3">
+         <ScrollArea className="h-full min-h-0 w-auto rounded-md md:pr-3">
          <div className="flex flex-col">
             {positions?.map((pos, i) => (
                <PositionList key={pos.id} pos={pos} index={i} />
             ))}
          </div>
          </ScrollArea>
-         <button
+         <Button
             onClick={toggle}
+            variant="outline"
             className="shrink-0 w-full mt-2 py-2 text-sm text-muted-foreground border border-dashed border-border rounded-lg hover:bg-muted transition-colors"
             >
             + Add position
-         </button>
+         </Button>
       </div>
    )
 }
