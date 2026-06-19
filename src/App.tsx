@@ -18,7 +18,7 @@ export default function App(){
       {/* Мобильный */}
       <div className="md:hidden">
         {!isCoinPage && (
-            <div className='px-3 flex-row items-center'>
+            <div className='flex-row items-center px-3'>
               <Header/>
               <Search />
               <TabsCoins/>
@@ -29,7 +29,7 @@ export default function App(){
 
       {/* Десктоп */}
       <div className="hidden md:flex h-full">
-        <div className="flex flex-col  w-70 border-r h-full px-3 lg:w-87.5">
+        <div className="flex flex-col  w-70 border-r h-full">
           <Header/>
           <Search />
           <TabsCoins/>

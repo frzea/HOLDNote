@@ -3,7 +3,8 @@ import { CoinListProps } from './type';
 import { useCoinStore } from '../../store/CoinStore';
 import { Button } from "@/components/ui/button"
 import { HomemadeStat } from "./components/homemade";
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
+import { ScrollArea } from "@/components/ui/scroll-area"
+import { Plus, X } from "lucide-react"
 
 export function CoinList({ data = [], form }: CoinListProps){
     const addToUserCoins = useCoinStore(store => store.addToUserCoins);
@@ -13,34 +14,30 @@ export function CoinList({ data = [], form }: CoinListProps){
  return(
     <ScrollArea className="flex-1 h-full min-h-0 w-auto rounded-md md:pr-2.5">
     <div className="flex flex-1 flex-col gap-1 pb-5">
-      {data.map(coin => {
-
-        const change = coin.price_change_percentage_24h ?? 0;
-        const isPositive = change >= 0;
-
+      {
+        data.map(coin => {
+          const change = coin.price_change_percentage_24h ?? 0;
+          const isPositive = change >= 0;
         return (
-        <div
-          key={coin.id}
-          className="flex items-center justify-between rounded-md bg-neutral-100  dark:bg-neutral-800 px-3 py-2 lg:py-1"
-        >
+        <div key={coin.id} className="flex text-xs items-center justify-between rounded-md bg-neutral-100  dark:bg-neutral-800 px-3 py-2 md:py-1 md:px-1.5">
           <div className="flex items-center gap-3 min-w-0">
             <img src={coin.image ?? coin.thumb} alt={coin.id} width={28} height={28} className="rounded-full shrink-0" />
             <div className="flex flex-col min-w-0 text-neutral-900 dark:text-neutral-100">
               <Link to={'/coin/' + coin.id} className="font-semibold truncate">
                 {coin.name}
               </Link>
-              <span className="text-sm text-neutral-500 dark:text-neutral-400 lowercase">
+              <span className="text-xs text-neutral-500 dark:text-neutral-400 lowercase">
                 {coin.symbol}
               </span>
             </div>
           </div>
-          <div className="flex items-center  gap-3 min-w-0">
+          <div className="flex items-center  gap-2 min-w-0">
             {(form !== null) &&
               (
                 <>
                   <div className="flex flex-col items-end min-w-0">
                       ${coin.current_price}
-                    <span className={`text-sm lowercase ${isPositive ? "text-emerald-500" : "text-red-500"}`}>
+                    <span className={`text-xs lowercase ${isPositive ? "text-emerald-500" : "text-red-500"}`}>
                       {change.toFixed(1)}{change.toFixed(1) && '%'}
                     </span>
                   </div>
@@ -50,7 +47,7 @@ export function CoinList({ data = [], form }: CoinListProps){
                     //className="rounded-md text-neutral-800 dark:text-neutral-100 border-neutral-800 dark:border-neutral-100 shrink-0 bg-neutral-100 dark:bg-neutral-800"
                     onClick={() => {if(form === true) {addToUserCoins(coin)} if(form === false){ removeUserCoin(coin)} else {removePurchasedCoin(coin.id)}}}
                   >
-                    {form === true ? '+' : form === false ? '-' : 'X'}
+                    {form === true && <Plus size={16} absoluteStrokeWidth /> ||<X size={16} absoluteStrokeWidth />}
                   </Button>
                 </>
               )

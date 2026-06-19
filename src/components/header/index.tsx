@@ -11,9 +11,9 @@ export function Header(){
    const isCoinPage = location.pathname.includes("/coin/");
 
    return(
-      <div className='flex pt-3 items-center gap-2'>
+      <div className='flex pt-3 items-center gap-2 md:px-3'>
          {isCoinPage && <Button  variant="outline" size='sm' className="md:hidden" onClick={() => navigate(-1)} ><ArrowLeftIcon/></Button>}
-         <div>
+         <div className='text-lg'>
             <Link to={'/'} className="font-semibold truncate">
                HOLDNote
             </Link>

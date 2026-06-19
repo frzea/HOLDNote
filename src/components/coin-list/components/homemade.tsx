@@ -11,7 +11,7 @@ export function HomemadeStat({ coin }: { coin: Coin }){
     return(
         <div className="flex flex-col items-end min-w-0">
             {sumQty.toFixed(0)}
-            <span className={`text-sm text-neutral-500 dark:text-neutral-400 lowercase`}>
+            <span className={`text-xs text-neutral-500 dark:text-neutral-400 lowercase`}>
                ${SumPrice.toFixed(2)}
             </span>
         </div>

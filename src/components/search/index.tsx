@@ -8,7 +8,7 @@ export function Search(){
 
    return(
       <>
-         <div className='my-3'>
+         <div className='my-3 px-3'>
             <InputSpinner onChange={handleChangeSearch} isLoading={loading}/>
          </div>
          {

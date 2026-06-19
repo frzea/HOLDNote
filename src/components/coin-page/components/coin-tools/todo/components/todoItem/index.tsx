@@ -8,8 +8,7 @@ import {
   FieldLabel,
   FieldTitle,
 } from "@/components/ui/field"
-import { MoreHorizontalIcon } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { MoreVerticalIcon } from "lucide-react"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -24,19 +23,19 @@ export function TodoItem({item, startEdit}: TodoItempProps){
    const updateTodo  = useCoinToolsStore(store => store.updateTodo);
 
    return(
-      <div>
+      <div >
        <FieldLabel>
-        <Field orientation="horizontal">
-          <Checkbox id="toggle-checkbox-2" name="toggle-checkbox-2" checked={item.done} onCheckedChange={e => updateTodo(selectCoinId, item.id, {done : e})}/>
-          <FieldContent>
+        <Field orientation="horizontal" className="min-h-0">
+          <Checkbox id="toggle-checkbox-2" name="toggle-checkbox-2" checked={item.done} onCheckedChange={e => updateTodo(selectCoinId, item.id, {done : e})} className="size-3.5" />
+          <FieldContent className="gap-0.5">
             <FieldTitle>{item.text}</FieldTitle>
-            <FieldDescription className='text-xs'>
+            <FieldDescription className='text-[10px] leading-tight'>
               {new Date(item.date).toLocaleString()}
             </FieldDescription>
           </FieldContent>
             <DropdownMenu>
-              <DropdownMenuTrigger>
-                <Button variant="outline" size='xs'><MoreHorizontalIcon/></Button>
+              <DropdownMenuTrigger className="p-0.5">
+                <MoreVerticalIcon className="size-3.5"/>
               </DropdownMenuTrigger>
               <DropdownMenuContent>
                 <DropdownMenuGroup>
