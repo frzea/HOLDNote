@@ -1,6 +1,6 @@
-import { useCoinStore } from '../../../../../store/CoinStore'
-import { useCoinToolsStore } from '../../../../../store/CoinToolsStore'
-import { Position } from '../../coin-tools/types'
+import { useCoinStore } from '../../../..//store/CoinStore'
+import { useCoinToolsStore } from '../../../../store/CoinToolsStore'
+import { Position } from '../coin-tools/types'
 
 export function useCoinInfoCalc(){
     const {selectCoin} = useCoinStore();
@@ -15,6 +15,14 @@ export function useCoinInfoCalc(){
     const totalQty = positions.reduce((sum, p) => sum + Number(p.qty), 0);
     const avgPrice = positions.reduce((sum, p) => sum + Number(p.price), 0)/ totalQty;
 
+    const bestBuy = positions.length > 0
+        ? [...positions].sort((a, b) => {
+                const profitA = (selectCoin.current_price - Number(a.price)) * Number(a.qty);
+                const profitB = (selectCoin.current_price - Number(b.price)) * Number(b.qty);
+                return profitB - profitA;
+            })[0]
+        : null;
+
     
-    return {capitalization, totalInvested, profitLossPercent, isPositive,  pnl: capitalization - totalInvested, totalQty, avgPrice} 
+    return {capitalization, totalInvested, profitLossPercent, isPositive,  pnl: capitalization - totalInvested, totalQty, avgPrice,bestBuy} 
 }

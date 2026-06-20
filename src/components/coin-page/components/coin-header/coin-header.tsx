@@ -1,4 +1,3 @@
-import { CoinInfo } from "./components/coin-info.tsx";
 import { useCoinStore } from '../../../../store/CoinStore.ts';
 
 export function CoinHeader(){
@@ -8,7 +7,6 @@ export function CoinHeader(){
    const isPositive = change >= 0;
 
    return(
-      <>
          <div className="flex shrink-0 py-5 items-center">
             <img src={coin.image ?? coin.thumb} alt={coin.id} width={30} height={30} className="rounded-full shrink-0 w-13 h-13 object-cover" />
             <div className="flex-row px-1">
@@ -28,7 +26,5 @@ export function CoinHeader(){
                </div>
             </div>
          </div>
-          <CoinInfo />
-      </>
    )
 }

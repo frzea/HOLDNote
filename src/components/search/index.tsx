@@ -12,7 +12,7 @@ export function Search(){
             <InputSpinner onChange={handleChangeSearch} isLoading={loading}/>
          </div>
          {
-            resultSearchList.length > 0 && <CoinList data={resultSearchList} form={true}/>
+            resultSearchList.length > 0 && <div className='ml-3'><CoinList data={resultSearchList} form={true}/></div>
          }
       </>
    )
