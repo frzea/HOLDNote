@@ -16,7 +16,8 @@ export function PositionList({pos, index}: PositionListProps) {
   const date = new Date(pos.date).toLocaleDateString('ru-RU');
 
   return (
-    <div className="flex items-center justify-between text-xs sm:text-sm py-1 px-2 my-0.5 rounded-md  bg-neutral-100  dark:bg-neutral-800 sm:px-4 sm:py-1">
+    <div aria-checked="true" className="flex items-center justify-between text-xs sm:text-sm py-1 px-2 my-0.5 rounded-md cursor-pointer bg-neutral-100 
+                                         dark:bg-neutral-800 sm:px-4 sm:py-1 hover:bg-neutral-200 dark:hover:bg-neutral-700 hover:border-x-2 hover:border-orange-500">
       <div className="flex items-center gap-2 sm:gap-3 md:gap-7">
         <span className="text-muted-foreground">{ date }</span>
         <span className="text-muted-medium">×{pos.qty}</span>
@@ -30,7 +31,7 @@ export function PositionList({pos, index}: PositionListProps) {
         <span className={`text-xs font-medium ${isPositive ? 'text-emerald-500' : 'text-red-500'} sm:text-md`}>
           {isPositive ? '+' : '-'}${Math.abs(pnl).toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 2 })}
         </span>
-        <Button variant="outline" size='xs' onClick={() => removePosition(selectCoinId, pos.id)}>
+        <Button variant="outline" size='xs' onClick={() => removePosition(selectCoinId, pos.id)} className="cursor-pointer">
           <X size={16} absoluteStrokeWidth />
         </Button>
       </div>

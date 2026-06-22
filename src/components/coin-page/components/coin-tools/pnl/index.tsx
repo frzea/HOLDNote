@@ -44,7 +44,7 @@ export function PNL(){
          <Button
             onClick={toggle}
             variant="outline"
-            className="shrink-0 w-full mt-2 py-2 text-sm text-muted-foreground border border-dashed border-border rounded-lg hover:bg-muted transition-colors"
+            className="shrink-0 w-full mt-2 py-2 cursor-pointer text-sm text-muted-foreground border border-dashed border-border rounded-lg hover:bg-muted transition-colors"
             >
             + Add position
          </Button>

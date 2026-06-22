@@ -28,13 +28,13 @@ export function TodoItem({item, startEdit}: TodoItempProps){
         <Field orientation="horizontal" className="min-h-0">
           <Checkbox id="toggle-checkbox-2" name="toggle-checkbox-2" checked={item.done} onCheckedChange={e => updateTodo(selectCoinId, item.id, {done : e})} className="size-3.5" />
           <FieldContent className="gap-0.5">
-            <FieldTitle>{item.text}</FieldTitle>
+            <FieldTitle className="cursor-pointer">{item.text}</FieldTitle>
             <FieldDescription className='text-[10px] leading-tight'>
               {new Date(item.date).toLocaleString()}
             </FieldDescription>
           </FieldContent>
-            <DropdownMenu>
-              <DropdownMenuTrigger className="p-0.5">
+            <DropdownMenu >
+              <DropdownMenuTrigger className="p-0.5 cursor-pointer">
                 <MoreVerticalIcon className="size-3.5"/>
               </DropdownMenuTrigger>
               <DropdownMenuContent>

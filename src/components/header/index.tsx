@@ -19,10 +19,11 @@ export function Header() {
         </Button>
       )}
 
-      <Link to="/" className="text-lg font-semibold truncate">
+      <Link to="/" className="text-lg font-semibold truncate text-black dark:text-orange-500">
         HOLDNote
       </Link>
-      <Switch onClick={toggleMode} checked={isDark} className={`ml-auto ${isCoinPage ? "hidden md:flex" : ""}`} />
+      <Switch onClick={toggleMode} checked={isDark} className={` cursor-pointer ml-auto ${isCoinPage ? "hidden md:flex" : ""}`} />
     </div>
   );
 }
+
