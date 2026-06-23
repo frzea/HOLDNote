@@ -17,13 +17,15 @@ export function Graf({ data }: GrafProps) {
     tooltipClr: isDark ? '#e5e5e5' : '#111111',
   }
 
+  const dayTicks = data.filter((_, i) => i % 24 === 0).map((d) => d.date);
+
   return (
     <div style={{
       background: colors.bg,
       borderRadius: '12px',
-    }} className=' flex flex-col w-full min-h-full p-2'>
+    }} className=' flex flex-col w-full min-h-full p-2 pl-5 pt-4'>
 
-      <ResponsiveContainer width="99%" height={220}>
+      <ResponsiveContainer width="99%" height={200}>
         <AreaChart data={data} margin={{ top: 4, right: 0, left: 0, bottom: 0 }}>
           <defs>
             <linearGradient id="priceGradient" x1="0" y1="0" x2="0" y2="1">
@@ -38,8 +40,15 @@ export function Graf({ data }: GrafProps) {
             dataKey="date"
             tick={{ fill: colors.muted, fontSize: 11 }}
             axisLine={false}
-            tickLine={false}
+            tickLine={true}
+            ticks={dayTicks}
             tickMargin={8}
+            domain={['auto', 'auto']}
+            tickFormatter={(v) =>{
+              const date = new Date(v).toLocaleDateString('ru-RU');
+              return date
+              }
+            }
           />
 
           <YAxis
@@ -51,7 +60,7 @@ export function Graf({ data }: GrafProps) {
               `$${Number(v).toLocaleString('en-US', { maximumFractionDigits: 0 })}`
             }
             domain={['auto', 'auto']}
-            width={64}
+            width={50}
             dx={-4}
           />
 
@@ -64,8 +73,13 @@ export function Graf({ data }: GrafProps) {
               color: colors.tooltipClr,
               fontSize: 13,
             }}
+            labelFormatter={(valDate: string) => {
+              const date = new Date(valDate).toLocaleDateString('ru-RU');
+              return [date ]
+              }
+            }
             formatter={(value: number) =>
-              [`$${value.toLocaleString('en-US', { minimumFractionDigits: 2 })}`, 'Цена']
+              [`$${value.toLocaleString('en-US', { minimumFractionDigits: 1 })}`, 'Price']
             }
           />
 

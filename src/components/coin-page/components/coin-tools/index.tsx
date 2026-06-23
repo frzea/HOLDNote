@@ -2,8 +2,6 @@ import { PNL } from "./pnl/index"
 import { TaskScheduler } from "./todo/index";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 
-
-
 export function CoinTools(){
    return(
       <Tabs defaultValue="pnl" className="flex flex-col flex-1 min-h-0">

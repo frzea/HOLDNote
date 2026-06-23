@@ -35,23 +35,23 @@ export function TaskScheduler(){
             </div>
          )}
          <ScrollArea className="h-full overflow-hidden w-auto rounded-md md:pr-2.5">
-         <div className="flex flex-col">
-            {CoinToolsData.todos?.map(item =>
-               isEditing(item.id) 
-               ? <EditTodoItem 
-                     key={item.id} 
-                     item={item} 
-                     editState={editState} 
-                     updateText={updateText}
-                     stopEdit={stopEdit}
-               />
-               : <TodoItem 
-                     key={item.id}
-                     item={item}
-                     startEdit={startEdit}
-               /> 
-            )}
-         </div>
+            <div className="flex flex-col">
+               {CoinToolsData.todos?.map(item =>
+                  isEditing(item.id) 
+                  ? <EditTodoItem 
+                        key={item.id} 
+                        item={item} 
+                        editState={editState} 
+                        updateText={updateText}
+                        stopEdit={stopEdit}
+                  />
+                  : <TodoItem 
+                        key={item.id}
+                        item={item}
+                        startEdit={startEdit}
+                  /> 
+               )}
+            </div>
          </ScrollArea>
          <Button
             onClick={toggle}

@@ -10,9 +10,9 @@ import {
 } from "@/components/ui/card"
 
 export function SectionCards() {
-       const {capitalization, totalInvested, profitLossPercent,isPositive, pnl, totalQty, avgPrice, bestBuy} = useCoinInfoCalc();
+   const {capitalization, totalInvested, profitLossPercent,isPositive, pnl, totalQty, avgPrice, bestBuy} = useCoinInfoCalc();
 
-       const date = new Date(bestBuy?.date ?? "1996-11-21").toLocaleDateString('ru-RU');
+   const date = new Date(bestBuy?.date ?? "1996-11-21").toLocaleDateString('ru-RU');
     
   return (
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 *:data-[slot=card]:from-primary/5 *:data-[slot=card]:to-card *:data-[slot=card]:shadow-xs @ dark:*:data-[slot=card]:bg-card">

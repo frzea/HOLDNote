@@ -13,7 +13,7 @@ export function AddTodoItem({newCommit, updateCommit, toggle} : AddTodoItemProps
             value={newCommit.text}
             onChange={e => updateCommit(e.target.value)}
          />
-          <Button className="w-auto mt-2" onClick={() => {addTodo(selectCoinId, newCommit); toggle();}}>Добавить</Button>
+          <Button className="w-auto mt-2" onClick={() => {addTodo(selectCoinId, newCommit); toggle();}}>Add</Button>
       </div>
    )
 }

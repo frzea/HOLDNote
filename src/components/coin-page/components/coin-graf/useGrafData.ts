@@ -46,7 +46,7 @@ export function useGrafData(coinId: string){
 
 
    const data = grafData?.map((candle) => ({
-      date: new Date(candle[0]).toLocaleDateString(),
+      date: new Date(candle[0]).toISOString(),
       price: parseFloat(candle[4])
    })) || []; 
    

@@ -11,19 +11,20 @@ export function Header() {
 
   return (
     <div className="flex items-center gap-2 pt-3 md:px-3">
-      {isCoinPage && (
-        <Button variant="outline" size="sm" className="md:hidden">
-          <Link to="/">
-            <ArrowLeftIcon />
-          </Link>
-        </Button>
-      )}
-
+      {
+        isCoinPage && (
+          <Button variant="outline" size="sm" className="md:hidden">
+            <Link to="/">
+              <ArrowLeftIcon />
+            </Link>
+          </Button>
+        )
+      }
       <Link to="/" className="text-lg font-semibold truncate text-black dark:text-orange-500">
         HOLDNote
       </Link>
       <Switch onClick={toggleMode} checked={isDark} className={` cursor-pointer ml-auto ${isCoinPage ? "hidden md:flex" : ""}`} />
     </div>
-  );
+  )
 }
 
