@@ -1,4 +1,4 @@
-import { Coin } from '../components/types';
+import { Coin } from '../models/types/types';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { getCoins } from '../services/get-coins';

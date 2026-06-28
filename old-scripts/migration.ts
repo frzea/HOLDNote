@@ -1,4 +1,4 @@
-import {UserCoinsToolsData } from '../src/components/coin-page/components/coin-tools/types' 
+import { UserCoinsToolsData } from '@/models/types/types' 
 
 export function migrateLocalStorageToCoinToolsStore() {
    const OLD_KEY = 'userCoinTools' 

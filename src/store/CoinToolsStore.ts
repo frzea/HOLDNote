@@ -1,4 +1,4 @@
-import { Position,Todo,ToolsData  } from '../components/coin-page/components/coin-tools/types';
+import { Position,Todo,ToolsData  } from '@/models/types/types';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { useCoinStore } from './CoinStore'

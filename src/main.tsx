@@ -1,13 +1,13 @@
 import { createRoot } from 'react-dom/client'
-import App from './App'
-import { CoinPage } from './components/coin-page/index';
-import { createBrowserRouter, RouterProvider, } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, } from "react-router-dom"
+import { CoinPage } from './pages/CoinPage/index'
+import StartPage from './pages/StartPage/index';
 
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <StartPage />,
     children:[
       {
         path: "coin/:coinId",
@@ -16,7 +16,6 @@ const router = createBrowserRouter([
     ]
   },
 ]);
-
 
 createRoot(document.getElementById('root')).render(
     <RouterProvider router={router} />
