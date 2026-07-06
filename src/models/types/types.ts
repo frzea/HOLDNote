@@ -1,4 +1,3 @@
-
 type Coin = {
     id: string
     symbol: string
@@ -15,8 +14,8 @@ type Coin = {
 
 type Position = {
   id: string
-  qty: number | null
-  price: number | null
+  qty: number 
+  price: number 
   date: string
 }
 
@@ -32,10 +31,4 @@ type ToolsData = {
     todos: Todo[]
 }
 
-type UpdateCoinTools = (updater: (toolsData: ToolsData) => ToolsData) => void
-
-type UserCoinsToolsData = Record<string, ToolsData>
-
-type UpdaterCoinData = (toolsData : ToolsData) => ToolsData
-
-export type { Coin, Position, Todo, ToolsData, UpdateCoinTools, UserCoinsToolsData, UpdaterCoinData }
+export type { Coin, Position, Todo, ToolsData }

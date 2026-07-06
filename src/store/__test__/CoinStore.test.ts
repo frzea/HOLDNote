@@ -1,7 +1,7 @@
 import { describe, test, expect, beforeEach, vi } from 'vitest';
 import { useCoinStore } from '../CoinStore';
 import { Coin } from '../../models/types/types';
-import { getCoins } from '../../services/get-coins';
+import { getCoins } from '../../api/get-coins';
 
 vi.mock('../services/get-coins', () => ({
    getCoins: vi.fn(),

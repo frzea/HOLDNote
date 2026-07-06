@@ -1,7 +1,7 @@
 import { Coin } from '../models/types/types';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { getCoins } from '../services/get-coins';
+import { getCoins } from '../api/get-coins';
 
 interface CoinStore {
    topCoins: Coin[]
@@ -14,7 +14,7 @@ interface CoinStore {
    removeUserCoin: (coin: Coin) => void
    addToPurchasedCoins: (coin: Coin) => void
    removePurchasedCoin: (coinID: string) => void
-   getCoinById: (id: string) => Coin
+   getCoinById: (id: string) => Coin | undefined
    setSelectedCoin: (id: string) => void
    syncCoins: () => Promise<void>
 }
@@ -64,17 +64,15 @@ export const useCoinStore = create<CoinStore>()(
          const userCoinsID = (userCoins || []).map(c => c.id);
          const purchasedCoinsID = (purchasedCoins || []).map(c => c.id);
          const topCoinsURL: string = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=20';
-         const userCoinsURL: string = userCoinsID.length ?  `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${userCoinsID}` : null;
-         const purchaseCoinsURL: string = purchasedCoinsID.length ?  `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${purchasedCoinsID}` : null;
+         const userCoinsURL: string | null = userCoinsID.length ?  `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${userCoinsID}` : null;
+         const purchaseCoinsURL: string | null = purchasedCoinsID.length ?  `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${purchasedCoinsID}` : null;
 
          try{
-            const result: [Coin[], Coin[], Coin[]] = await Promise.all([
-               getCoins(topCoinsURL),
-               userCoinsURL ? getCoins(userCoinsURL) : Promise.resolve([]),
-               purchaseCoinsURL ? getCoins(purchaseCoinsURL) : Promise.resolve([])
+            const [topCoinsData, userCoinsData, purchaseCoinsData] = await Promise.all([
+               getCoins<Coin[]>(topCoinsURL),
+               userCoinsURL ? getCoins<Coin[]>(userCoinsURL) : Promise.resolve([]),
+               purchaseCoinsURL ? getCoins<Coin[]>(purchaseCoinsURL) : Promise.resolve([])
             ]);
-
-            const [topCoinsData, userCoinsData, purchaseCoinsData] = result;
 
             const userCoinsSorted = userCoinsID.map(id => userCoinsData.find(c => c.id === id)).filter(Boolean);
             const purchaseCoinsSorted = purchasedCoinsID.map(id => purchaseCoinsData.find(c => c.id === id)).filter(Boolean);
