@@ -1,10 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
-import { getCoins } from '@/api/get-coins'
 import { Coin } from '@/models/types/types.ts'
-
-type FechType = {
-    coins: Coin[]
-}
+import { SearchAPI } from '@/api/endpoints/coingecko';
 
 export function useSearch(){
     const [strSearch, setStrSearch] = useState<string>('');
@@ -21,7 +17,7 @@ export function useSearch(){
 
         const dilaySearch = setTimeout(async () => {
             try{
-                const resultFind = await getCoins<FechType>(`https://api.coingecko.com/api/v3/search?query=${strSearch}`);
+                const resultFind = await SearchAPI(strSearch);
                 setResultSearchList(resultFind.coins);
             } catch(err) {
                 console.error(err);

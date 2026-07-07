@@ -1,10 +1,10 @@
 import { describe, test, expect, beforeEach, vi } from 'vitest';
 import { useCoinStore } from '../CoinStore';
 import { Coin } from '../../models/types/types';
-import { getCoins } from '../../api/get-coins';
+import { DataAPI } from '../../api/endpoints/coingecko';
 
 vi.mock('../services/get-coins', () => ({
-   getCoins: vi.fn(),
+   DataAPI: vi.fn(),
 }));
 
 
@@ -67,7 +67,7 @@ describe('CoinStore', () => {
          userCoins: [ethereum],
       });
 
-      vi.mocked(getCoins)
+      vi.mocked(DataAPI)
          .mockResolvedValueOnce(topCoinsMock)
          .mockResolvedValueOnce(userCoinsMock);
 

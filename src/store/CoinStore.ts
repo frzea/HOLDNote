@@ -1,7 +1,7 @@
 import { Coin } from '../models/types/types';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { getCoins } from '../api/get-coins';
+import { DataAPI } from '../api/endpoints/coingecko';
 
 interface CoinStore {
    topCoins: Coin[]
@@ -63,15 +63,12 @@ export const useCoinStore = create<CoinStore>()(
          const { userCoins,purchasedCoins } = get();
          const userCoinsID = (userCoins || []).map(c => c.id);
          const purchasedCoinsID = (purchasedCoins || []).map(c => c.id);
-         const topCoinsURL: string = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=20';
-         const userCoinsURL: string | null = userCoinsID.length ?  `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${userCoinsID}` : null;
-         const purchaseCoinsURL: string | null = purchasedCoinsID.length ?  `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${purchasedCoinsID}` : null;
-
+ 
          try{
             const [topCoinsData, userCoinsData, purchaseCoinsData] = await Promise.all([
-               getCoins<Coin[]>(topCoinsURL),
-               userCoinsURL ? getCoins<Coin[]>(userCoinsURL) : Promise.resolve([]),
-               purchaseCoinsURL ? getCoins<Coin[]>(purchaseCoinsURL) : Promise.resolve([])
+               DataAPI(),
+               userCoinsID.length ? DataAPI(userCoinsID) : Promise.resolve([]),
+               purchasedCoinsID.length ? DataAPI(purchasedCoinsID) : Promise.resolve([])
             ]);
 
             const userCoinsSorted = userCoinsID.map(id => userCoinsData.find(c => c.id === id)).filter(Boolean);
@@ -86,3 +83,22 @@ export const useCoinStore = create<CoinStore>()(
    }),
    { name: 'coins'}
 ));
+
+
+/*
+
+      const { userCoins,purchasedCoins } = get();
+         const userCoinsID = (userCoins || []).map(c => c.id);
+         const purchasedCoinsID = (purchasedCoins || []).map(c => c.id);
+         const topCoinsURL: string = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=20';
+         const userCoinsURL: string | null = userCoinsID.length ?  `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${userCoinsID}` : null;
+         const purchaseCoinsURL: string | null = purchasedCoinsID.length ?  `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${purchasedCoinsID}` : null;
+
+         try{
+            const [topCoinsData, userCoinsData, purchaseCoinsData] = await Promise.all([
+               getCoins<Coin[]>(topCoinsURL),
+               userCoinsURL ? getCoins<Coin[]>(userCoinsURL) : Promise.resolve([]),
+               purchaseCoinsURL ? getCoins<Coin[]>(purchaseCoinsURL) : Promise.resolve([])
+            ]);
+
+*/

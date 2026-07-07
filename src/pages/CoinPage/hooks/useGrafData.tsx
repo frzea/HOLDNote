@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { Coin } from '@/models/types/types';
-import { BinanceData } from '../components/coin-graf/types/type';
-import { getCoins } from '@/api/get-coins';
+import { BinanceCandle } from '@/models/types/types';
+import { BinanceAPI } from '@/api/endpoints/binance.ts';
 import { useCoinStore } from '@/store/CoinStore';
 import { useCoinToolsStore } from '@/store/CoinToolsStore';
 
 
 export function useGrafData(coinId: string){
-   const [grafData, setGrafData] = useState<BinanceData>([]);
+   const [grafData, setGrafData] = useState<BinanceCandle[]>([]);
    const getCoinById = useCoinStore(store => store.getCoinById);
    const setSelectedCoin = useCoinStore(store => store.setSelectedCoin);
    const setSelectedCoinTodo = useCoinToolsStore(store => store.setSelectedCoinTodo);
@@ -25,7 +25,7 @@ export function useGrafData(coinId: string){
       async function getData() {
          try{
             const symbol = coinSymbol?.endsWith('USDT') ? coinSymbol : `${coinSymbol}USDT`;
-            const  graf = await getCoins<BinanceData>(`https://api.binance.com/api/v3/klines?symbol=${symbol}&interval=1h&limit=168`);
+            const  graf = await BinanceAPI(symbol);
             if(!cancelRequest){
                setGrafData(graf);
             }

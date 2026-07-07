@@ -3,7 +3,10 @@ import {
   CartesianGrid, Tooltip, ResponsiveContainer
 } from 'recharts'
 import { useThemeStore } from '@/store/themeStore'
-import { GrafProps } from './types/type'
+
+type GrafProps = {
+    data: { date: string; price: number }[]
+}
 
 export function Graf({ data }: GrafProps) {
    const { isDark } = useThemeStore()

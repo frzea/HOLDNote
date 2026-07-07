@@ -31,4 +31,7 @@ type ToolsData = {
     todos: Todo[]
 }
 
-export type { Coin, Position, Todo, ToolsData }
+type BinanceCandle = [number, string, string, string, string, string, number, string, number, string, string, string];
+
+
+export type { Coin, Position, Todo, ToolsData, BinanceCandle }
