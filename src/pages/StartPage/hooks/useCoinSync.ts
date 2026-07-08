@@ -9,7 +9,7 @@ export function useCoinSync(){
     
       useEffect(() => {
         
-        //syncCoins();
+        syncCoins();
         document.documentElement.classList.toggle('dark', isDark)
 
         const interval: number = setInterval(syncCoins, 1 * 60 * 1000);

@@ -4,7 +4,9 @@ A React-based cryptocurrency portfolio tracker designed to help users manage the
 
 The project uses local storage to keep all data private and accessible only to the user, with no external account or server required.
 
-🚀 Demo:
+## 🚀 Live Demo
+
+👉 https://hold-note.vercel.app
 
 ## 🖥 Desktop Screenshots
 ![alt text](/src/screenshots/coin-page.png)
@@ -25,6 +27,8 @@ The project uses local storage to keep all data private and accessible only to t
 - Create notes and trading plans
 - Save all data locally
 - Responsive design for desktop and mobile devices
+- Switch between light and dark themes
+- Real-time cryptocurrency price updates
 
 ## Tech Stack
 
@@ -36,15 +40,20 @@ The project uses local storage to keep all data private and accessible only to t
 ![shadcn/ui](https://img.shields.io/badge/shadcn%2Fui-000000?style=for-the-badge&logo=shadcnui&logoColor=white)
 ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
 
+### APIs
+
+- CoinGecko API
+- Binance API
+
 ## Technical Highlights
 
 - Integration with CoinGecko and Binance APIs
 - Custom API layer with centralized error handling
-- Promise race/all strategy for optimized API requests
+- Optimized API requests using Promise.race and Promise.all
 - Debounced search to reduce unnecessary API calls
 - Automatic market data refresh every minute
 - Global state management with Zustand
-- Theme persistence using local storage
+- Persistent user preferences (theme and settings) using local storage
 - Custom React hooks for reusable business logic
 - Client-side routing with React Router
 - Comprehensive try/catch error handling to prevent application crashes
