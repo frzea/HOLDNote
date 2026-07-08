@@ -34,14 +34,16 @@ export function AddPositionForm({newPosition,setNewPosition}: AddPositionFormPro
     return (
       <Dialog>
          <form>
-            <DialogTrigger className='w-full'>
+            <DialogTrigger
+            render={
                <Button
-                     variant="outline"
-                     className="shrink-0 w-full mt-2 py-2 cursor-pointer text-sm text-muted-foreground border border-dashed border-border rounded-lg hover:bg-muted transition-colors"
-                  >
+                  variant="outline"
+                  className="w-full shrink-0 mt-2 py-2 cursor-pointer text-sm text-muted-foreground border border-dashed border-border rounded-lg hover:bg-muted transition-colors"
+               >
                   + Add position
                </Button>
-            </DialogTrigger>
+            }
+            />
             <DialogContent className="sm:max-w-sm">
                <DialogHeader>
                   <DialogTitle>Add position</DialogTitle>
