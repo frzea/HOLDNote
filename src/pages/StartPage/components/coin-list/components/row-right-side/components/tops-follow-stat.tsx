@@ -29,7 +29,7 @@ export function CoinListTopsFollowStat({coin, mode}: CoinListButtomProps){
                size="xs" 
                variant="outline" 
                disabled={mode === 'add' && isInUserCoins}
-               onClick={() => mode ? addToUserCoins(coin) : removeUserCoin(coin)}
+               onClick={() => mode === 'add' ? addToUserCoins(coin) : removeUserCoin(coin)}
                className="cursor-pointer"
             >
                {mode === 'add' 
